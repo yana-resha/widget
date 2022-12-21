@@ -1,0 +1,21 @@
+@import '../../../../mixin.scss';
+
+.calendar-list {
+  @include clearListStyle();
+  margin-bottom: 30px;
+
+  .calendar-list-part {
+    // padding: 10px;
+    border: 1px solid gray;
+    display: grid;
+    grid-template-columns: 20% 70% 10%;
+  }
+
+  .calendar-list-part:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  .calendar-list-part div {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,111 @@
+@import './mixin.scss';
+
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'monserrat';
+  src: url('./assets/fonts/Montserrat-Regular.woff2') format('woff2'),
+       url('./assets/fonts/Montserrat-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  
+}
+
+@font-face {
+  font-family: 'monserrat';
+  src: url('./assets/fonts/Montserrat-ExtraBold.woff2') format('woff2'),
+       url('./assets/fonts/Montserrat-ExtraBold.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  
+}
+
+@font-face {
+  font-family: 'monserrat';
+  src: url('./assets/fonts/Montserrat-Bold.woff2') format('woff2'),
+       url('./assets/fonts/Montserrat-Bold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'monserrat';
+  src: url('./assets/fonts/Montserrat-SemiBold.woff2') format('woff2'),
+       url('./assets/fonts/Montserrat-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'monserrat';
+  src: url('./assets/fonts/Montserrat-Medium.woff2') format('woff2'),
+       url('./assets/fonts/Montserrat-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: #ffffff;
+  font-family: 'monserrat';
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 1430px;
+  min-width: auto;
+  margin: 0 auto;
+  padding: 0 15px;
+  // overflow: hidden;
+}
+
+.afisha {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+
+
+.afisha__title {
+  @include clearTitleStyle();
+  @include mainTitle();
+}
+
+
+
+// calendar
+
+.flatpickr-calendar {
+  width: 200px!important;
+}
+
+.flatpickr-rContainer {
+  width: 200px!important;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+  font-size: 14px!important;
+}
+
+.flatpickr-current-month input.cur-year {
+  font-size: 14px!important;
+}
+
+.dayContainer {
+  width: 200px!important;
+  min-width: 200px!important;
+}
+
+.flatpickr-day {
+  font-size: 12px!important;
+  height: 30px!important;
+  line-height: 30px!important;
+}

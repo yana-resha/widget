@@ -1,0 +1,89 @@
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.session__date-time-container {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-column-gap: 50px;
+  
+}
+
+.session__time-container {
+  position: relative;
+  width: 30%;
+  display: none;
+  opacity: 0;
+
+  .time-input {
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid transparent;
+    width: 200px;
+    background-color: transparent;
+    text-decoration: underline dashed black;
+  }
+  .dropdown-time {
+    position: absolute;
+    top: 50px;
+    background-color: white;
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.session__date-time-container .on-open {
+  display: block;
+  opacity: 1;
+  animation: fadeInFromNone 0.3s ease-in-out;
+}
+
+.session__date-time-container .on-open .dropdown-time {
+  transform: scale(1);
+}
+
+.dropdown-time {
+  display: flex;
+  flex-direction: column;
+  transform: scale(0);
+  button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    outline: none;
+    cursor: pointer;
+  }
+
+  button:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+
+.session__calendar-container {
+  position: relative;
+  display: block;
+  // display: flex;
+  // flex-direction: column;
+  .session__calendar-input {
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid transparent;
+    width: 200px;
+    background-color: transparent;
+    text-decoration: underline dashed black;
+  }
+}
+

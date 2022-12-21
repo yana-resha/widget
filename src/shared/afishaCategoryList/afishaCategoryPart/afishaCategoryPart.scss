@@ -1,0 +1,97 @@
+@keyframes afishaOpen {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: grid;
+    opacity: 0;
+  }
+
+  100% {
+    display: grid;
+    opacity: 1;
+  }
+
+}
+
+@keyframes sliderClose {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+  
+}
+
+.afishaCategoryPart:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.afishaCategoryPart {
+ display: flex;
+ flex-direction: column;
+
+
+ .afisha__list {
+  padding-top: 30px;
+  padding-left: 65px;
+  padding-right: 65px;
+  opacity: 0;
+  display:none;
+  transition: opacity 1s ease-in-out,visibility 0.3s ease-in-out, display 0.1s ease-in-out;
+ }
+
+ .afisha__list.afisha-open {
+  display: grid;
+  opacity: 1;
+  animation: afishaOpen 1s ease-in-out;
+ }
+
+ .slider-container {
+  display: block;
+  opacity: 1;
+  transition: opacity 1s ease-in-out,visibility 0.3s ease-in-out, display 0.1s ease-in-out;
+  animation: sliderClose 1s ease-in-out;
+ }
+
+ .slider-container.slider-close {
+  display: none;
+  animation: sliderClose 0.5s ease-in-out;
+ }
+
+ .swiper-slide {
+  align-self: stretch;
+  height: auto;
+}
+
+}
+
+.afisha-category-title-block {
+  display: flex;
+  flex-direction: row;
+}
+
+.afishaCategoryName {
+  margin-right: 2%;
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.afishaBtnCount {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px dashed black;
+  cursor: pointer;
+}

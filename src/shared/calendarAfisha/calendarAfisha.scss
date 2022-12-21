@@ -1,0 +1,123 @@
+@import '../../mixin.scss';
+
+
+.calendar-afisha-list {
+  display: grid;
+  grid-row-gap: 30px;
+  @include  clearListStyle();
+
+  .calendar-afisha-card {
+    display: grid;
+    border: 1px solid gray;
+  
+  }
+
+  .card__btn {
+    min-width: 85px;
+  }
+
+  .calendar-card__content-block {
+    padding: 10px;
+    padding-bottom: 30px;
+    .calendar-card__title {
+      font-weight: 600;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  }
+  
+  .calendar-card__description {
+    margin-bottom: 10px;
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  
+    p:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+  
+  .calendar-card__times-desc {
+    font-weight: 600;
+  }
+  
+  .calendar-card__times-desc {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .calendar-card__dropdown-part:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  
+  .calendar-card__dropdown-block {
+    cursor: pointer;
+    background-color: white;
+    display: none;
+    padding: 10px;
+    position: absolute;
+    top: calc(100% + 20px);
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out,visibility 0.3s ease-in-out, display 0.1s ease-in-out;
+  }
+  
+  .calendar-card__dropdown-block.dropdown-open {
+    display: block;
+    opacity: 1;
+    animation: fadeInFromNone 0.3s ease-in-out;
+  }
+  
+  .calendar-card__pay-block {
+    display: flex;
+    // justify-content: flex-end;
+  }
+}
+
+
+
+// афиша списком
+.calendar-list {
+  grid-template-columns: 100%;
+  .calendar-afisha-card {
+    grid-template-columns: 20% 60% 20%;
+  }
+  
+  .calendar-card__date-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .calendar-card__pay-block {
+   
+    justify-content: flex-end;
+  }
+  
+}
+
+
+
+// афиша блоками
+.calendar-block {
+  grid-template-columns: 30% 30% 30%;
+  justify-content: space-between;
+
+  .calendar-afisha-card {
+    grid-template-columns: 100%;
+    padding-bottom: 30px;
+  }
+
+  .calendar-card__date-block {
+    text-align: center;
+    font-weight: 600;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .calendar-card__pay-block {
+   
+    justify-content: center;
+  }
+}

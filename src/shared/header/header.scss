@@ -1,0 +1,125 @@
+@import '../../mixin.scss';
+
+.header {
+  background-color: #a3a4a3;
+  padding: 20px 0;
+
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .city-btn {
+    @include btnStyle();
+    padding: 0;
+    background-color: transparent;
+    border-bottom: 1px dashed black;
+  }
+
+  .category-input {
+    padding: 0;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: white;
+    text-decoration: none;
+  }
+
+  .category-input::placeholder {
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+ 
+  .date-input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: white;
+    font-size: 16px;
+  }
+
+  .date-input::placeholder {
+    color: white;
+    font-size: 16px;
+  }
+
+  .date-dropdown button{
+    color: white;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background-color: #44ac33;
+    transition: background-color 0.3s ease-in-out;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .city-list {
+    background-color: #a3a4a3;
+    display: none;
+    padding: 10px;
+    position: absolute;
+    min-width: 100%;
+    max-width: auto;
+    top: calc(100% + 20px);
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out,visibility 0.3s ease-in-out, display 0.1s ease-in-out;
+  }
+
+  .category-list {
+    background-color: #a3a4a3;
+    display: none;
+    padding: 10px;
+    position: absolute;
+    min-width: 100%;
+    max-width: auto;
+    top: calc(100% + 20px);
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out,visibility 0.3s ease-in-out, display 0.1s ease-in-out;
+  }
+
+  .category-list li {
+    color: white;
+    font-size: 16px;
+  }
+
+  .category-list-part-btn {
+    color: white;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  .category-list.dropdown-open {
+    display: block;
+    opacity: 1;
+    animation: fadeInFromNone 0.3s ease-in-out;
+  }
+
+  .city-list.dropdown-open {
+    display: block;
+    opacity: 1;
+    animation: fadeInFromNone 0.3s ease-in-out;
+  }
+
+
+  .city-list-part:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  .category-list-part:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+
+
+
+}

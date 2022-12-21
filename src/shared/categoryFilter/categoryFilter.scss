@@ -1,0 +1,63 @@
+@import '../../mixin.scss';
+
+.category-container {
+  position: relative;
+}
+
+.category-btn {
+  @include  btnStyle();
+}
+
+.category-list {
+  @include clearListStyle();
+  li {
+    cursor: pointer;
+  }
+}
+
+.category-input {
+  cursor: pointer;
+}
+
+// .checkbox-container {
+//   position: relative;
+// }
+
+// .custom-checkbox {
+//   margin: 0;
+//   position: absolute;
+//   bottom: 0;
+//   z-index: -1;
+//   opacity: 0;
+// }
+
+// label {
+//   display: flex;
+//   cursor: pointer;
+// }
+
+// label + .custom-checkbox {
+//   /* display: inline-flex; */
+//   /* align-items: center; */
+//   user-select: none;
+// }
+// .custom-checkbox + label::before {
+//   content: '';
+//   display: inline-block;
+//   width: 1em;
+//   height: 1em;
+//   flex-shrink: 0;
+//   flex-grow: 0;
+//   border: 1px solid #adb5bd;
+//   border-radius: 0.25em;
+//   margin-right: 0.5em;
+// }
+
+// .custom-checkbox:checked+label::before {
+//   content: '';
+//   background-image: url('../../assets/icons/Ellipse.svg');
+//   background-repeat: no-repeat;
+//   background-position: center center;
+//   background-size: 6px;
+// }
+

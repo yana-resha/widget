@@ -1,0 +1,60 @@
+@mixin btnStyle {
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+
+@mixin clearListStyle {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+@mixin clearTitleStyle {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin mainTitle {
+  font-weight: 700;
+  font-size: 34px;
+  margin-bottom: 30px;
+}
+
+@mixin inputStyle {
+  outline: none;
+  // padding-left: 16px;
+  padding-top: 10px;
+  // padding-bottom: 10px;
+  // padding-right: 10px;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.par {
+  margin: 0;
+  padding: 0;
+}
+
+.list-no-marker {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
