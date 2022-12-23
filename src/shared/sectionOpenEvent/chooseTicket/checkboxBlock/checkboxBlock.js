@@ -7,7 +7,6 @@ export function chechboxBlock (obj) {
 
   let inc;
   obj.inc_sessions && obj.inc_sessions !== null ? inc = obj.inc_sessions : inc = obj.inc;
-  
   let id = 0;
   obj.req.forEach(j => {
     id += 1;

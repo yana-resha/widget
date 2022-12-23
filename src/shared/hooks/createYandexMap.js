@@ -1,7 +1,8 @@
 import ymaps from 'ymaps'
 
 export function createYandexMap (adress) {
-  const container = document.querySelector('#map');
+  
+  
   ymaps.load("https://api-maps.yandex.ru/2.1/?apikey=11eb3ace-b7a7-4f8d-a457-c0679f545196&lang=ru_RU").then(maps => {
     var geocoder = maps.geocode(adress);
     let map;

@@ -5,47 +5,112 @@ import { chechboxBlock } from './checkboxBlock/checkboxBlock';
 import { openEvent } from '../../api';
 import { infoBlock } from './infoBlock/infoBlock';
 import { createYandexMap } from '../../hooks/createYandexMap';
+import { busket } from '../../busket/busket';
 
 
 function getTarif(d) {
 
+  const tarifContainer = el('div.tarif-container');
 
+  if (d.hall[0].events_type_id == '4' || d.hall[0].events_type_id == '6') {
 
-  let levels = d.r;
+  } else {
 
-  let prices = [];//преобразовываем в удобный массив
-  let price_color = [];
-  var prices_gr = [];
-  //$('.hallname').html(d['hallname']);
-  d.p.forEach(el => {
+    let levels = d.r;
+    let prices = [];//преобразовываем в удобный массив
+    let price_color = [];
+    var prices_gr = [];
+    console.log(d)
+    //$('.hallname').html(d['hallname']);
+    d.p.forEach(el => {
+  
+      let arr = el;
+      if (!prices[arr.gr]) {
+        prices[arr.gr] = [];
+      } 
+      if(!prices[ arr.gr ] [ arr.sort ||0 ]) {
+        prices[ arr.gr ] [ arr.sort || 0 ] = [];
+      }
+  
+      prices[ arr.gr ][ arr.sort||0 ][ arr.tid ] = arr;
+  
+      if(!price_color[ arr.gr ])
+      price_color[ arr.gr ] = arr;
+    })
+  
+    var sids = [];
+    var min  = 0; //минимальное количество билетов 
+  
+  
+    levels.forEach(element => {
+  
+      sids[element.ei_id] = element.sid;
+      if(parseInt(element.tq_free < min || !min)) min = parseInt(element.tq_free);
+      if (d.hall[0].show != 'Y') {
+        let levelBlock = el('div.tarif-level');
+        let countPlace = el('div.level-free-place', `Свободных мест: ${element.tq_free}`);
+        levelBlock.append(countPlace);
+        tarifContainer.append(levelBlock);
+        const partTarifContainer = el('div.part-tarif-container');
+        if (element.tq_free && element.tq_free > 0) {
+          for (let i in prices) {
+            let tarif = i;
+            if (tarif == element.gr) {
+              for (let j in prices[tarif]) {
+                let sort = j;
+                for (let tid in prices[tarif][sort]) {
+                  let tarifObj = prices[tarif][sort][tid];
+                  
+                  let partTarif = el('div.part-tarif');
+                  const tarifName = el('div.part-tarif-title', `${tarifObj.tname}`);
+                  partTarif.append(tarifName);
+                  partTarifContainer.append(partTarif);
+                  const price = tarifObj.price / 100;
+                  const tarifContent = el('div.tarif-content-block');
+                  const priceBlock = el('div.price-tarif', `${price} руб.`);
+                  partTarifContainer.setAttribute('busket', 'true');
+                 
+                  const payBlock = el('div.tarif-pay-block');
+                  const btnAdd = el('button.btn-add', '+', {
+                    onclick () {
+                      countInput.value = parseInt(countInput.value) + 1;
+                      if (countInput.value > 0) {
+                        btnRemove.disabled = false;
+                      }
+                    }
+                  });
+                  const btnRemove = el('button.btn-add', '-', {
+                    disabled: true,
+                    onclick () {
+                      if (countInput.value > 0) {
+                        countInput.value = parseInt(countInput.value) - 1;
+                        if (countInput.value == 0) btnRemove.disabled = true;
+                      } 
 
-    let arr = el;
-    if (!prices[arr.gr]) {
-      prices[arr.gr] = [];
-    } 
-    if(!prices[ arr.gr ] [ arr.sort ||0 ]) {
-      prices[ arr.gr ] [ arr.sort || 0 ] = [];
-    }
+                    }
+                  });
+                  const countInput = el('input.tarif-pay-count', {
+                    type: 'number',
+                    value: 0,
+                    readOnly: 'ReadOnly',
+                    name: "cval" + `[${element.tid}]` + `[${tarifObj.id}]` + `[${tid}]`,
+                  });
+                  
+                  tarifContent.append(priceBlock, payBlock);
+                  partTarif.append(tarifContent);
+                  payBlock.append(btnRemove, countInput, btnAdd);
+                  levelBlock.append(partTarifContainer);
+                }
+              }
+            }
+          }
+        }
+      }
+    })
 
-    prices[ arr.gr ][ arr.sort||0 ][ arr.tid ] = arr;
-
-    if(!price_color[ arr.gr ])
-    price_color[ arr.gr ] = arr;
-    
-  })
-
-
-  var sids = [];
-  var sum  = 0;
-  var min  = 0; //минимальное количество билетов 
-
-  levels.forEach(el => {
-
-    sids[el.ei_id] = el.sid;
-    sum += parseInt(el.tq_free);
-    if(parseInt(el.tq_free < min || !min)) min = parseInt(levels[i]['tq_free']);
-
-  })
+  }
+  
+  return tarifContainer;
 }
 
 export function chooseTicket (obj) {
@@ -77,6 +142,8 @@ export function chooseTicket (obj) {
 
    openComplexEvent().then(res => {
     const infoDiv =  infoBlock(res);
+    console.log(container)
+    container.innerHTML = '';
     container.append(infoDiv);
     const checkBox = chechboxBlock(obj.complex);
     container.append(checkBox);
@@ -118,13 +185,13 @@ export function chooseTicket (obj) {
   }
 
   if (obj.event) {
-    const infoDiv =  infoBlock(obj.event)
+    const infoDiv =  infoBlock(obj.event);
     container.append(infoDiv);
+    
     createYandexMap(obj.event.hall[0].theater_address);
-    getTarif(obj.event)
+    const tarifBlock = getTarif(obj.event);
+    container.append(tarifBlock);
   }
-
-
 
   return container;
 }

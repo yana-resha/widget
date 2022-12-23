@@ -35,9 +35,10 @@ export function onChange (dateStr, newArr) {
           inputTime.value = e.target.textContent;
           askEvents(element).then(res => {
             const section = $('.open-event')[0];
-            const choose__container = chooseTicket (res)
+            const choose__container = chooseTicket(res);
             const mainContainer = $(section).find('.container')[0];
             mainContainer.append(choose__container);
+
             smoothScroll(choose__container, 10);
           })
         }

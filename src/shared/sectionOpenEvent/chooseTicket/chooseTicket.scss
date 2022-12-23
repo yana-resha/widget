@@ -1,0 +1,65 @@
+.tarif-container {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-row-gap: 30px;
+  justify-content: space-between;
+}
+
+.tarif-level {
+  padding: 10px;
+}
+
+.level-free-place {
+  margin-bottom: 50px;
+}
+
+.part-tarif-container {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-row-gap: 30px;
+  justify-content: space-between;
+}
+
+.part-tarif {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.part-tarif-title {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.tarif-pay-count {
+  outline: none;
+  border: none;
+  text-align: center;
+}
+
+.tarif-pay-block {
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  justify-content: space-between;
+  height: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.price-tarif {
+  margin-bottom: 20px;
+}
+
+.btn-add {
+  border: none;
+  outline: none;
+  background-color: green;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}

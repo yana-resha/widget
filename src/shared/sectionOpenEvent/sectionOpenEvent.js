@@ -5,6 +5,7 @@ import { detailsBlock } from "./detailsBlock/detailsBlock";
 import { sessionsBlock } from "./sessionsBlock/sessionsBlock";
 import { askEvents } from "../hooks/askEvents";
 import { chooseTicket } from "./chooseTicket/chooseTicket";
+import { busket } from "../busket/busket";
 
 
 export function sectionOpenEvent (stringEvent = '', arrDetails = {}, arr = {}) {
@@ -29,12 +30,14 @@ export function sectionOpenEvent (stringEvent = '', arrDetails = {}, arr = {}) {
   }
 
   if (stringEvent === 'openEvent') {
-    console.log(stringEvent)
     const choose__container = chooseTicket(arr);
     cont.append(choose__container);
+    const busketBlock = busket();
+    document.body.append(busketBlock);
   }
 
-  section.append(cont)
+  section.append(cont);
+  
 }
 
 
