@@ -1,8 +1,40 @@
 .busket-container {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 200px;
-    height: 200px;
-    background-color: gray;
+  position: fixed;
+  flex-direction: column;
+  bottom: 0;
+  right: 0;
+  padding: 40px;
+  display: none;
+  background-color: white;
+  border: 1px solid grey;
+  transition: all 0.3s ease-in-out;
+
+  .ticket-container {
+    display: none;
+    margin-bottom: 20px;
+  }
+
+  .ticket-container li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  .busket-sum {
+    margin-bottom: 10px;
+  }
 }
+
+.busket-container.open {
+  display: flex;
+
+  &:hover {
+    top: 0;
+    height: 100vh;
+    .busket-sum {
+      margin-top: auto;
+    }
+    .ticket-container {
+      display: block;
+    }
+  }
+}
+

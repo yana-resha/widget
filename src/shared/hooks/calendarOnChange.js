@@ -37,8 +37,9 @@ export function onChange (dateStr, newArr) {
             const section = $('.open-event')[0];
             const choose__container = chooseTicket(res);
             const mainContainer = $(section).find('.container')[0];
+            const choose__container1 = $('.choose__container')[0];
+            if (choose__container1) choose__container1.remove();
             mainContainer.append(choose__container);
-
             smoothScroll(choose__container, 10);
           })
         }

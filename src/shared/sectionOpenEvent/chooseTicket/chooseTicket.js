@@ -6,11 +6,15 @@ import { openEvent } from '../../api';
 import { infoBlock } from './infoBlock/infoBlock';
 import { createYandexMap } from '../../hooks/createYandexMap';
 import { busket } from '../../busket/busket';
+import { createTicketArr } from '../../busket/createTicketArr';
 
 
 function getTarif(d) {
-
-  const tarifContainer = el('div.tarif-container');
+ 
+  const busketBlock = busket();
+  const tarifContainer = el('div.tarif-container', {
+    name: d.session.name,
+  });
 
   if (d.hall[0].events_type_id == '4' || d.hall[0].events_type_id == '6') {
 
@@ -62,13 +66,15 @@ function getTarif(d) {
                   let tarifObj = prices[tarif][sort][tid];
                   
                   let partTarif = el('div.part-tarif');
+                  partTarif.setAttribute('name', tarifObj.tname);
                   const tarifName = el('div.part-tarif-title', `${tarifObj.tname}`);
                   partTarif.append(tarifName);
                   partTarifContainer.append(partTarif);
                   const price = tarifObj.price / 100;
+                  
                   const tarifContent = el('div.tarif-content-block');
                   const priceBlock = el('div.price-tarif', `${price} руб.`);
-                  partTarifContainer.setAttribute('busket', 'true');
+                  priceBlock.setAttribute('price', price);
                  
                   const payBlock = el('div.tarif-pay-block');
                   const btnAdd = el('button.btn-add', '+', {
@@ -77,6 +83,7 @@ function getTarif(d) {
                       if (countInput.value > 0) {
                         btnRemove.disabled = false;
                       }
+
                     }
                   });
                   const btnRemove = el('button.btn-add', '-', {
@@ -96,10 +103,12 @@ function getTarif(d) {
                     name: "cval" + `[${element.tid}]` + `[${tarifObj.id}]` + `[${tid}]`,
                   });
                   
+                  createTicketArr([btnAdd, btnRemove]);
                   tarifContent.append(priceBlock, payBlock);
                   partTarif.append(tarifContent);
                   payBlock.append(btnRemove, countInput, btnAdd);
                   levelBlock.append(partTarifContainer);
+                  
                 }
               }
             }
@@ -107,9 +116,13 @@ function getTarif(d) {
         }
       }
     })
-
   }
-  
+
+  const busket1 = $('.busket-container')[0];
+  if (busket1) {
+    busket1.remove();
+  }
+  document.body.append(busketBlock);
   return tarifContainer;
 }
 
@@ -179,15 +192,12 @@ export function chooseTicket (obj) {
     });
 
     // все вывела теперь нужно отобразить тарифы
-
-
    });
   }
 
   if (obj.event) {
     const infoDiv =  infoBlock(obj.event);
     container.append(infoDiv);
-    
     createYandexMap(obj.event.hall[0].theater_address);
     const tarifBlock = getTarif(obj.event);
     container.append(tarifBlock);

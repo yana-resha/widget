@@ -27,16 +27,16 @@ export function sectionOpenEvent (stringEvent = '', arrDetails = {}, arr = {}) {
     cont.append(detail);
     const sessions = sessionsBlock(arr)
     cont.append(sessions)
+    section.append(cont);
   }
 
   if (stringEvent === 'openEvent') {
     const choose__container = chooseTicket(arr);
     cont.append(choose__container);
-    const busketBlock = busket();
-    document.body.append(busketBlock);
+    section.append(cont);
   }
 
-  section.append(cont);
+  
   
 }
 
